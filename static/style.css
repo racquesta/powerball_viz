@@ -1,0 +1,32 @@
+/* @font-face { font-family: Delicious; src: url('Delicious-Roman.otf'); } 
+@font-face { font-family: Delicious; font-weight: bold; src: url('Delicious-Bold.otf'); } */
+h1 {
+    color: #c61633;
+}
+
+.jumbotron{
+    background-image: url('../Images/lotteryballs.jpg');
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 450px;
+    font-family: 'Pacifico';
+    border-bottom-color: 'black';
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    align-items: 'center';
+    
+}
+
+/* h1 {
+	font-family: Pacifico;
+	font-size: 23px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 23px;
+} */
+
+body{
+    background-color: #efefef
+}
