@@ -5,7 +5,7 @@ h1 {
 }
 
 .jumbotron{
-    background-image: url('../Images/lotteryballs.jpg');
+    background-image: url('./lotteryballs.jpg');
     background-size: cover;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -14,17 +14,11 @@ h1 {
     border-bottom-color: 'black';
     border-bottom-style: solid;
     border-bottom-width: 10px;
-    
 }
 
-/* h1 {
-	font-family: Pacifico;
-	font-size: 23px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 23px;
-} */
+h1 {
+    color: red
+}
 
 body{
     background-color: #efefef
