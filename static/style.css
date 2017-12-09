@@ -4,6 +4,9 @@ h1 {
     color: #c61633;
 }
 
+h1 {
+    color: crimson;
+}
 .jumbotron{
     background-image: url('./lotteryballs.jpg');
     background-size: cover;
@@ -16,9 +19,7 @@ h1 {
     border-bottom-width: 10px;
 }
 
-h1 {
-    color: red
-}
+
 
 body{
     background-color: #efefef
