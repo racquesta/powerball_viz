@@ -15,6 +15,8 @@ db = client.heroku_sdvkxt9m
 
 total_collection = db.total_collection
 
+import pandas as pd
+import numpy as np
 # functions in other files for routes imported here
 
 
@@ -52,6 +54,26 @@ def jackpot():
     }
     return jsonify(jackpots_dict)
 
+@app.route("/jackpots_all")
+def jackpots_all():
+    results = total_collection.find({}, {'jackpot': 1, 
+                                        'ticket_sales': 1, 
+                                        '_id': 0 }, {'$sort': {'ticket_sales': 1}})
+    # jackpot = [x['jackpot'] for x in results]
+    # total_tick_sales = [x['total_tickets_sold'] for x in results]
+    jackpot = []
+    total_tick_sales = []
+    for x in results:
+        jackpot.append(x['jackpot'])
+        total_tick_sales.append(x['ticket_sales'])
+        
+    # print(total_tick_sales)
+    jackpots_dict = {
+        "jackpots": jackpot,
+        "ticket_sales": total_tick_sales
+    }
+    return jsonify(jackpots_dict)
+
 @app.route("/sales_data/<year>")
 def sales_data(year):
     year = int(year)
@@ -73,21 +95,24 @@ def sales_data(year):
     }
 
     return jsonify(sales_dict)
-# undfinished route
+
+# unfinished route
 @app.route("/bubble_data")
 def bubble_data():
-    results = total_collection.find({'year': {'$in': [2011, 2012, 2013, 2014, 2015]} }, {'date_format': 1, 
+    results = total_collection.find({'year': {'$in': [2011, 2012, 2013, 2014, 2015]}}, {'date_format': 1, 
                                             'jackpot': 1, 
                                             'norm_tick_sales': 1, 
-                                            'state_abbr': 1,
+                                            'states': 1,
                                             'revenue': 1,
                                             'norm_revenue': 1,
                                             'Poverty Rate': 1,
                                             'Unemployment Rate': 1,
                                             'Household Income': 1,
-                                            '-id': 0 })
-    
-    return results
+                                            '_id': 0 })
+    df = pd.DataFrame(list(results))
+    df.dropna(inplace = True)
+    df_dict = df.to_dict(orient = 'list')
+    return jsonify(df_dict)
 
 
 
