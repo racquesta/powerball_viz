@@ -26,12 +26,12 @@ def home():
     return render_template("index.html")
 
 
-@app.route("/test")
-def reload():
-    years = total_collection.find({}, {'date_format':1, '_id':0})
-    list_years =[x['year'] for x in years]
-    return jsonify(list_years)
-
+@app.route("/years")
+def years():
+    pipe = [{'$group': {'_id': '$year', 'year': {'$first': '$year'}}}, {'$sort': {'_id': 1}}]
+    results = total_collection.aggregate(pipeline=pipe)
+    results_list = [x['year'] for x in results]
+    return jsonify(results_list)
 
 @app.route("/jackpot")
 def jackpot():
@@ -55,7 +55,7 @@ def jackpot():
 @app.route("/sales_data/<year>")
 def sales_data(year):
     year = int(year)
-    pipe = [{'$match': {'year': year}},{'$group': {'_id': '$states', 'norm_draw_sales': {'$sum': '$norm_draw_sale_by_state'}, 'norm_pp_sales': {"$sum": '$norm_pp_sale_by_state'}}}, {'$sort': {'_id': 1}}]
+    pipe = [{'$match': {'year': year}},{'$group': {'_id': '$states', 'norm_draw_sales': {'$sum': '$norm_draw_sale_by_state'}, 'norm_pp_sales': {"$sum": '$norm_pp_sale_by_state'} }}, {'$sort': {'_id': 1}}]
     results = total_collection.aggregate(pipeline=pipe) 
     print(results)
     state = []
