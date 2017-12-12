@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 #Mongo DB connection with mLab
 from pymongo import MongoClient
+import pandas as pd
 
 client = MongoClient("mongodb://%s:%s@ds133816.mlab.com:33816/heroku_sdvkxt9m" % ("admin", "powerballdata")) 
 
@@ -50,5 +51,46 @@ def jackpot():
         "ticket_sales": total_tick_sales
     }
     return jsonify(jackpots_dict)
+
+@app.route("/sales_data/<year>")
+def sales_data(year):
+    year = int(year)
+    pipe = [{'$match': {'year': year}},{'$group': {'_id': '$states', 'norm_draw_sales': {'$sum': '$norm_draw_sale_by_state'}, 'norm_pp_sales': {"$sum": '$norm_pp_sale_by_state'}}}, {'$sort': {'_id': 1}}]
+    results = total_collection.aggregate(pipeline=pipe) 
+    print(results)
+    state = []
+    norm_draw = []
+    norm_pp = []
+    for x in results:
+        state.append(x['_id'])
+        norm_draw.append(x['norm_draw_sales'])
+        norm_pp.append(x['norm_pp_sales'])
+    
+    sales_dict = {
+        'state': state,
+        'norm_draw': norm_draw,
+        'norm_pp': norm_pp
+    }
+
+    return jsonify(sales_dict)
+# undfinished route
+@app.route("/bubble_data")
+def bubble_data():
+    results = total_collection.find({'year': {'$in': [2011, 2012, 2013, 2014, 2015]} }, {'date_format': 1, 
+                                            'jackpot': 1, 
+                                            'norm_tick_sales': 1, 
+                                            'state_abbr': 1,
+                                            'revenue': 1,
+                                            'norm_revenue': 1,
+                                            'Poverty Rate': 1,
+                                            'Unemployment Rate': 1,
+                                            'Household Income': 1,
+                                            '-id': 0 })
+    
+    return results
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
