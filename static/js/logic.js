@@ -91,37 +91,65 @@ function init(){
             
         });
 
-    d3.json("/bubble_data", function(error, response){
+    d3.json("/soc_data", function(error, response){
 
         if (error) return console.warn(error);
 
         console.log(response)
+        
+        
+        color_num = {}
+        count = 1
+        _.each(response["state"], function(item){
+            if(!color_num[item]){
+            color_num[item] = count
+            count += 2
+            }
+        })
+        console.log(color_num)
+        colors = []
+        _.each(response['state'], function(item){
+            console.log(color_num[item])
+            colors.push(color_num[item])
+        })
 
-        colors_list = []
-        for(var i=0; i<response["states"].length; i++){
-            colors_list.push(color_dict[response["states"][i]])
-        }
+        console.log(colors)
+        // colors_list = []
+        // for(var i=0; i<response["states"].length; i++){
+        //     colors_list.push(color_dict[response["states"][i]])
+        // }
         //console.log(sizes)
         var trace1 = {
-            x: response['jackpot'],
-            y: response['norm_tick_sales'],
+            x: response['rate'],
+            y: response['norm_ticket_count'],
             mode: 'markers',
             marker: {
-                color: colors_list,
-                size: response["Poverty Rate"]
+                colorscale: "Earth",
+                color: colors
+                // size: response["jackpot"]
             },
-            text: response['states'],
+            text: response['state'],
             type: "scatter"
           };
           
           var data = [trace1];
           
           var layout = {
-            title: 'Marker Size',
+            title: 'Title Here',
+            hovermode: 'closest',
             showlegend: false,
             height: 600,
-            width: 1200
+            // width: 1200
+            margin: 
+                {
+                    top: 10,
+                    bottom: 10,
+                    right: 10,
+                    left: 10
+                }
+    
           };
+          
           
           Plotly.newPlot('soc_graph', data, layout);
     })
