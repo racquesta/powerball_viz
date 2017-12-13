@@ -79,42 +79,39 @@ def sales_data(year):
     year = int(year)
     pipe = [{'$match': {'year': year}},{'$group': {'_id': '$states', 'norm_draw_sales': {'$sum': '$norm_draw_sale_by_state'}, 'norm_pp_sales': {"$sum": '$norm_pp_sale_by_state'} }}, {'$sort': {'_id': 1}}]
     results = total_collection.aggregate(pipeline=pipe) 
-    print(results)
-    state = []
-    norm_draw = []
-    norm_pp = []
-    for x in results:
-        state.append(x['_id'])
-        norm_draw.append(x['norm_draw_sales'])
-        norm_pp.append(x['norm_pp_sales'])
     
-    sales_dict = {
-        'state': state,
-        'norm_draw': norm_draw,
-        'norm_pp': norm_pp
-    }
+    df = pd.DataFrame(list(results))
 
+    df.dropna(inplace = True)
+
+    sales_dict = df.to_dict(orient = 'list')
+    
     return jsonify(sales_dict)
 
 # unfinished route
-@app.route("/bubble_data")
-def bubble_data():
-    results = total_collection.find({'year': {'$in': [2011, 2012, 2013, 2014, 2015]}}, {'date_format': 1, 
-                                            'jackpot': 1, 
-                                            'norm_tick_sales': 1, 
-                                            'states': 1,
-                                            'revenue': 1,
-                                            'norm_revenue': 1,
-                                            'Poverty Rate': 1,
-                                            'Unemployment Rate': 1,
-                                            'Household Income': 1,
-                                            '_id': 0 })
+@app.route("/soc_data/<chosen_year>/<data_point>")
+def soc_data(chosen_year, data_point):
+    pipe =  [{"$match": {"$and" : [{'year': {"$in": [2011, 2012, 2013, 2014, 2015]}}, {"state_abbr": {"$ne": "VI"}}]}}, {'$group': {'_id': {'year': '$year', 'state': '$states'}, 'rate': {'$avg': ("$" + data_point)}, 
+                                                                                    'norm_ticket_count': {'$sum': '$norm_tick_sales'}}}]
+    results = total_collection.aggregate(pipeline=pipe)
+
     df = pd.DataFrame(list(results))
+
+    df['year'] = 0
+    df['state'] = ''
+    for index, row in df.iterrows():
+        year = int(row["_id"]['year'])
+        state = row['_id']['state']
+        df.set_value(index, 'year', year)
+        df.set_value(index, 'state', state)
+    if chosen_year != "all":
+        df = df[df['year'] == int(chosen_year)]
+    del df['_id']
+
     df.dropna(inplace = True)
+
     df_dict = df.to_dict(orient = 'list')
     return jsonify(df_dict)
-
-
 
 
 if __name__ == '__main__':
