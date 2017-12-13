@@ -31,7 +31,7 @@ def home():
 
 @app.route("/years")
 def years():
-    pipe = [{'$match': {'year': {'$in': [2010, 2011, 2012, 2013, 2014, 2015]}}}{'$group': {'_id': '$year', 'year': {'$first': '$year'}}}, {'$sort': {'_id': 1}}]
+    pipe = [{'$match': {'year': {'$in': [2010, 2011, 2012, 2013, 2014, 2015]}}}, {'$group': {'_id': '$year', 'year': {'$first': '$year'}}}, {'$sort': {'_id': 1}}]
     results = total_collection.aggregate(pipeline=pipe)
     results_list = [x['year'] for x in results]
     return jsonify(results_list)
