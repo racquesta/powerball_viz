@@ -3,24 +3,39 @@ var map = L.map("map", {
   zoom: 3
 });
 
-L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/outdoors-v10/tiles/256/{z}/{x}/{y}?" +
-  "access_token=pk.eyJ1Ijoia2pnMzEwIiwiYSI6ImNpdGRjbWhxdjAwNG0yb3A5b21jOXluZTUifQ.T6YbdDixkOBWH_k9GbS8JQ").addTo(map);
+L.tileLayer("https://api.mapbox.com/styles/v1/jamiejin91/cjb4aryzk6z6y2so0gnawkf6s/tiles/256/{z}/{x}/{y}?access_token=" + 
+  "pk.eyJ1IjoiamFtaWVqaW45MSIsImEiOiJjamFrYTFnbjEyZ2dvMzNxdTdkMHJ4cG1wIn0.uvp0QKa2TpxLA_-6JW1lIA").addTo(map);
 
 var link = "https://raw.githubusercontent.com/racquesta/powerball_viz/master/Jamie/us_geojson_creator/us_territories.geojson";
 
+function chooseColor(info) {
+  if (info >= 4000000) {
+    return "red"
+  }
+  else if (info >= 3000000) {
+    return "orange"
+  }
+  else if (info >= 2000000) {
+    return "orange"
+  }
+  else if (info >= 1000000) {
+    return "yellow"
+  }
+  else {
+    return "green"
+  }
+};
+
 d3.json(link, function(data) {
   L.geoJson(data, {
-  	// Style each feature (in this case a neighborhood)
     style: function(feature) {
       return {
         color: "white",
-        // Call the chooseColor function to decide which color to color our neighborhood (color based on borough)
-        fillColor: 'blue',
+        fillColor: chooseColor(feature.properties.info_2),
         fillOpacity: 0.5,
         weight: 1.5
       };
     },
-    // Called on each feature
     onEachFeature: function(feature, layer) {
       // Set mouse events to change map styling
       layer.on({
@@ -45,8 +60,10 @@ d3.json(link, function(data) {
       });
       // Giving each feature a pop-up with information pertinent to it
       layer.bindPopup("<h1>" + feature.properties.state_name + 
-      "</h1> <hr> <h2>" + feature.properties.info_1 + "</h1> <hr> <h2>" + 
-      feature.properties.info_2 + "</h2>");
+      "</h1> <hr> <h2>" + "# of Winners: " + feature.properties.info_1 + "</h1> <hr> <h2>" + 
+      "Population: " + feature.properties.info_2 + "</h2>" + "</h1> <hr> <h2>" + 
+      "Per Capita Income: " + feature.properties.info_2 + "</h2>" + "</h1> <hr> <h2>" + 
+      "Poverty Rate: " + feature.properties.info_2 + "</h2>");
     }
   }).addTo(map);
 });
