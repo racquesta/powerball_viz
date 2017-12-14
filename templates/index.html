@@ -9,7 +9,7 @@
     <!-- underscore js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
     <!-- Latest compiled and minified CSS & JS -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <link rel="stylesheet" media="screen" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -36,34 +36,220 @@
 
         
         <div class="container" style="width: 95%">
-            <div class="row">
-               
-                <div class="panel panel-primary">
-                      <!-- <div class="panel-heading">
-                            <h3 class="panel-title"></h3>
-                      </div> -->
-                      <div class="panel-body">
-                            <div id = 'graph'></div>
-                      </div>
+            
+                <!-- panel for leaflet map -->
+        <div class="row">
+                <div class="col-md-12">
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                           <h1 style="text-align: center">Are Some States Luckier than Others?</h1>
+                           <hr>
+                           <p>Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?</p> 
+                        </div>
+                    </div>
+                    
                 </div>
-                
             </div>
+            
+            
+            <div class="row">
+                    <div class="col-md-12">
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                               <h1 style="text-align: center">Do Socio-Economics Influence Lottery Sales?</h1>
+                                <hr>
+                                <p>instructions here?</p>
+                                <hr>
+                                <!-- graph and dropdowns -->
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                               <div class="row">
+                                                   <div class="col-md-12">
+                                                        <!-- x and y dropdowns here -->
+                                                        
+                                                        
+                                                        <form action="" class = "form-inline">
+                                                                <div class="form-group">
+                                                                        <label for="depVar">Y-Axis Value</label>
+                                                                        <select class="form-control" id="depVar">
+                                                                          <option>Ticket Sales Per Capita</option>
+                                                                          <option>$'s Spent on Tickets per Capita</option>
+                                                                        </select>
+                                                                </div>
+                                                            <div class="form-group">
+                                                                <label for="indVar"> X-Axis Value</label>
+                                                                <select class="form-control" id="indVar">
+                                                                  <option>Poverty Rate</option>
+                                                                  <option>Unemployment Rate</option>
+                                                                  <option>Median Income</option>
+                                                                  <option>Per Capita Income</option>
+                                                                  <option>Median Age</option>
+                                                                  <option>Population</option>
+                                                                </select>
+                                                            </div>
+                                                       
+                                                        <div class="form-group">
+                                                                <label for="socYears">   Year</label>
+                                                                <select class="form-control" id="socYears">
+                                                                  <option>2010-2015</option>
+                                                                  <option>2011</option>
+                                                                  <option>2012</option>
+                                                                  <option>2013</option>
+                                                                  <option>2014</option>
+                                                                  <option>2015</option>
+                                                                </select>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary" id="soc_graph_submit">Submit!</button>
+                                                    </form>
+                                                   </div>
+                                               </div>
+                                               
+                                                    
+        
+        
+                                               <div class="row">
+                                                    <div class="col-md-12">
+                                                            <!-- js graph -->
+                                                            <div id="soc_graph">
+                                                                    <!-- js plotly here -->
+                                                                </div>
+                                                    </div>
+                                               </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
 
+                                    <!-- socio summary -->
+                                    <div class="col-md-4">
+                                        
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                               Basic panel example
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            
+            <!-- bar graph of state sales -->
             <div class="row">
                 <div class="col-md-12">
                     
                     <div class="panel panel-default">
                         <div class="panel-body">
-                           <h1>By socio-economic variables...</h1>
+                           <h1 style="text-align: center">Where is Powerball Popular?</h1>
                            <hr>
-                           <div id="soc_graph">
-                               <!-- js plotly here -->
+                        <p>Summary here?</p>
+                        <hr>
+                         <div>
+                            <!-- bar graph here -->
+                        </div> 
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- for jackpot graph -->
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                           <h1>Title</h1>
+                           <hr>
+                           <div class="row">
+                               <div class="col-md-12">
+                                         <div class="row">
+                                              <div class="col-md-4">
+                                                  
+                                                  <div class="panel panel-default">
+                                                      <div class="panel-body">
+                                                            <p>summary</p
+                                                      </div>
+                                                  </div>
+                                                  
+                                                 
+                                                </div> 
+                                            </div>
+                                                <div class="col-md-8">
+                                                    
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+            
+                                                                    <form action="" method="POST" class="form-inline" role="form"></form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                        <label class="sr-only" for="graph_y">label</label>
+                                                                                        <select name="" id="graph_y">
+                                                                                            <option value=""></option>
+                                                                                            <option value=""></option>
+                                                                                            <option value=""></option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                        <label class="sr-only" for="">label</label>
+                                                                                        <input type="email" class="form-control" id="" placeholder="Input field">
+                                                                                    </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                        <label class="sr-only" for="">label</label>
+                                                                                        <input type="email" class="form-control" id="" placeholder="Input field">
+                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                    
+                                
+                                                                    
+                                                                    
+                                                                            
+                                                                    
+                                                                            
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                                <div id='graph'></div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                
+                                                </div>
+                                          </div>
+                                       
+                                   
+                                   
+                               </div>
+
                            </div>
                         </div>
                     </div>
                     
                 </div>
             </div>
+            <!-- div to close container -->
         </div>
         
        

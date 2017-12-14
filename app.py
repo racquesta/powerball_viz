@@ -15,6 +15,7 @@ db = client.heroku_sdvkxt9m
 
 total_collection = db.total_collection
 winners_collection = db.winners_collection
+jackpots_collection = db.jackpots_collection
 
 import pandas as pd
 import numpy as np
@@ -35,6 +36,21 @@ def years():
     results = total_collection.aggregate(pipeline=pipe)
     results_list = [x['year'] for x in results]
     return jsonify(results_list)
+
+@app.route("/jackpots/<chosen_year>/<data_point>/<dep_var>")
+def jackpots(chosen_year, data_point, dep_var):    
+    results = jackpots_collection.find({}, {data_point: 1, 
+                                        dep_var: 1, 
+                                        'jackpot_run_id': 1,
+                                        'year': 1,
+                                        'date_format': 1,
+                                        'drawings_since_jackpot': 1,
+                                        '_id': 0 })
+    df = pd.DataFrame(list(results))
+    if chosen_year != 'all':
+        df = df[df['year'] == int(chosen_year)]
+    df_dict = df.to_dict(orient = 'list')
+    return jsonify(df_dict)
 
 @app.route("/jackpot")
 def jackpot():
@@ -90,10 +106,10 @@ def sales_data(year):
     return jsonify(sales_dict)
 
 # unfinished route
-@app.route("/soc_data/<chosen_year>/<data_point>")
-def soc_data(chosen_year, data_point):
-    pipe =  [{"$match": {"$and" : [{'year': {"$in": [2011, 2012, 2013, 2014, 2015]}}, {"state_abbr": {"$ne": "VI"}}]}}, {'$group': {'_id': {'year': '$year', 'state': '$states'}, 'rate': {'$avg': ("$" + data_point)}, 
-                                                                                    'norm_ticket_count': {'$sum': '$norm_tick_sales'}}}]
+@app.route("/soc_data/<chosen_year>/<data_point>/<dep_var>")
+def soc_data(chosen_year, data_point, dep_var):
+    pipe =  [{"$match": {"$and" : [{'year': {"$in": [2011, 2012, 2013, 2014, 2015]}}, {"state_abbr": {"$ne": "VI"}}]}}, {'$group': {'_id': {'year': '$year', 'state': '$states'}, 'independent': {'$avg': ("$" + data_point)}, 
+                                                                                    'dependent': {'$sum': ('$' + dep_var)}}}]
     results = total_collection.aggregate(pipeline=pipe)
 
     df = pd.DataFrame(list(results))
