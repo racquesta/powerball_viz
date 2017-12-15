@@ -1,6 +1,7 @@
 // In the actual plot, there would be the years 2010 ~ 2017
 // All states that we have data on will go in states_data, and null data would = 0
 // Data would be sales/population to simulate how much a person spent on average on power ball tickets that year in that state
+
 var sales_data = [{'year':2010, 'states_data':[{'state':'New Jersey','draw_sales':56,'pp_sales':12},
 											{'state':'New York','draw_sales':44,'pp_sales':21},
 											{'state':'Florida','draw_sales':61,'pp_sales':9},
@@ -18,6 +19,17 @@ var sales_data = [{'year':2010, 'states_data':[{'state':'New Jersey','draw_sales
 											{'state':'Texas','draw_sales':59,'pp_sales':4}]}
 				];
 
+var $selDataset = document.getElementById("selDataset");
+d3.json("/years", function(error, response) {
+    if (error) return console.log(error);
+    var salesYears = response;
+for (var i = 0; i < saleYears.length; i++) {
+      var saleYear = saleYears[i];
+      var $option = document.createElement("option");
+      $option.setAttribute("value", saleYear);
+      $option.innerHTML = saleYear;
+      $selDataset.appendChild($option);
+  };
 
 for (i = 0; i < sales_data.length; i++) { 
     var state_names = sales_data[i]['states_data'].map(ayy => ayy.state);
