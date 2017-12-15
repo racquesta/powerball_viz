@@ -3,8 +3,42 @@ body {
   margin: 0;
 }
 
-#map,
+/*#map,
 body,
 html {
   height: 100%;
+}*/
+
+#map1 {
+width: 900px;
+height: 500px;
+}
+
+#map2 {
+width: 900px;
+height: 500px;
+}
+
+.legend1 {
+    line-height: 18px;
+    color: #555;
+}
+.legend1 i {
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.legend2 {
+    line-height: 18px;
+    color: #555;
+}
+.legend2 i {
+    width: 15px;
+    height: 15px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
 }
