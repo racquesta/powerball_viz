@@ -16,8 +16,10 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     
+    <!-- google fonts -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pacifico" />
-    
+    <link href='http://fonts.googleapis.com/css?family=Stint+Ultra+Expanded' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
@@ -26,8 +28,12 @@
         
         <div class="jumbotron">
             <div class="container" style="text-align:center;">
-                <h1 id="jumboHeader">Visualizing Luck</h1>
-                <p id="explaination">Explore the Data behind the Powerball Lottery</p>
+                    
+                    <object style = "height: 350px" data="../static/header.svg" type="image/svg+xml">
+                        <img src="../static/header.png" />
+                      </object>
+                       
+                
                 <!-- <p>
                     <a class="btn btn-primary btn-lg">Learn more</a>
                 </p> -->
@@ -60,13 +66,14 @@
                             <div class="panel-body">
                                <h1 style="text-align: center">Do Socio-Economics Influence Lottery Sales?</h1>
                                 <hr>
-                                <p>instructions here?</p>
+                                <p style = "font-size: 20px"><b>The graphs on the page allow you to plot a variety of variables with respect to several dimension of the lottery.  
+                                    You may explore each by chosing your variables and years from the drop down menus. </b> </p>
                                 <hr>
                                 <!-- graph and dropdowns -->
                                 <div class="row">
                                     <div class="col-md-8">
                                         
-                                        <div class="panel panel-default">
+                                        <div class="panel panel-default" >
                                             <div class="panel-body">
                                                <div class="row">
                                                    <div class="col-md-12">
@@ -74,6 +81,8 @@
                                                         
                                                         
                                                         <form action="" class = "form-inline">
+                                                            <div class="row">
+                                                            <div class="col-md-6">
                                                                 <div class="form-group">
                                                                         <label for="depVar">Y-Axis Value</label>
                                                                         <select class="form-control" id="depVar">
@@ -81,37 +90,52 @@
                                                                           <option>$'s Spent on Tickets per Capita</option>
                                                                         </select>
                                                                 </div>
-                                                            <div class="form-group">
-                                                                <label for="indVar"> X-Axis Value</label>
-                                                                <select class="form-control" id="indVar">
-                                                                  <option>Poverty Rate</option>
-                                                                  <option>Unemployment Rate</option>
-                                                                  <option>Median Income</option>
-                                                                  <option>Per Capita Income</option>
-                                                                  <option>Median Age</option>
-                                                                  <option>Population</option>
-                                                                </select>
                                                             </div>
-                                                       
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="socYears">   Year</label>
+                                                                    <select class="form-control" id="socYears">
+                                                                      <option>2010-2015</option>
+                                                                      <option>2011</option>
+                                                                      <option>2012</option>
+                                                                      <option>2013</option>
+                                                                      <option>2014</option>
+                                                                      <option>2015</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                            <button type="submit" class="btn btn-primary" id="soc_graph_submit">Graph!</button>
+                                                        </div>
+                                                       </div>
+                                                       <div class="row">
+                                                            <div class="col-md-12">
+
+                                                            </div>
+                                                       </div>
+                                                       <div class="row">
+                                                           <div class="col-md-7">
                                                         <div class="form-group">
-                                                                <label for="socYears">   Year</label>
-                                                                <select class="form-control" id="socYears">
-                                                                  <option>2010-2015</option>
-                                                                  <option>2011</option>
-                                                                  <option>2012</option>
-                                                                  <option>2013</option>
-                                                                  <option>2014</option>
-                                                                  <option>2015</option>
-                                                                </select>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary" id="soc_graph_submit">Submit!</button>
-                                                    </form>
+                                                            <label for="indVar"> X-Axis Value</label>
+                                                            <select class="form-control" id="indVar">
+                                                              <option>Poverty Rate</option>
+                                                              <option>Unemployment Rate</option>
+                                                              <option>Median Income</option>
+                                                              <option>Per Capita Income</option>
+                                                              <option>Median Age</option>
+                                                              <option>Population</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    </div>
+                                                </form>
                                                    </div>
                                                </div>
                                                
                                                     
         
-        
+       
                                                <div class="row">
                                                     <div class="col-md-12">
                                                             <!-- js graph -->
@@ -130,7 +154,21 @@
                                         
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                               Basic panel example
+                                               <p style="font-size: 20px">Likely contrary to popular belief, it appears at a state level socio-economic factors have no correlation 
+                                                   with Powerball lottery ticket sales per capita or the amount total spent on lottery tickets per person (which in this graph applies to
+                                                   both base tickets ($2 each) and the option for a Power Play Ticket ($1 for a chance to multiply any winnings with 
+                                                   the exception of the jackpot).  Several factors are available for exploration including poverty rate, median income, unemployment rate, 
+                                                   median age, and population (Does living in a more populated state correlate with how many lottery tickets individuals purchase?).
+                                                   <br>
+                                                   <br>
+                                                    As shown below, certain states consistently rank at the high and low in ticket purchases per capita.  This can be seen
+                                                    when graphing each years data on the same graph.  
+                                                    <br>
+                                                    <br>
+                                                    Note: Colors represent different states.  
+
+                                               </p>
+                                                
                                             </div>
                                         </div>
                                         
@@ -146,13 +184,37 @@
             <div class="row">
                 <div class="col-md-12">
                     
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" >
                         <div class="panel-body">
                            <h1 style="text-align: center">Where is Powerball Popular?</h1>
                            <hr>
-                        <p>Summary here?</p>
+                        <p style="font-size: 20px">Here, you can observe the total sales in USD per capita by year.  Draw Sales are the base ticket of Powerball while Power Play tickets are extra and optional.  They allow the buyer a chance at multiplying their winnings with the exception of the jackpot prize.    
+                            The normalized sales vary dramatically by state. For example, sales in Rhode Island are consistently 3-5 times that of Washington State.  The rankings of highest to lowest per capita sales are relatively constant from year to year.  We see Rhode Island with the highest ranking in 5 out of 6 years examined and 
+                            Washington experiencing the lowest sales rates in 5 out of 6 years.   
+                              </p>
                         <hr>
-                         <div>
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                                
+                                <form action="" method="POST" class="form-inline" role="form">
+                                
+                                    <div class="form-group">
+                                        <label for="">Year: </label>
+                                        
+                                        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+                                    </div>
+                
+                                </form>
+                                             
+                                 
+                        </div>
+                         <div id = "bar">
                             <!-- bar graph here -->
                         </div> 
                         </div>
@@ -167,7 +229,7 @@
                     
                     <div class="panel panel-default">
                         <div class="panel-body">
-                           <h1>Title</h1>
+                           <h1>What Drives Powerball Sales?</h1>
                            <hr>
                            <div class="row">
                                <div class="col-md-12">
@@ -176,13 +238,25 @@
                                                   
                                                   <div class="panel panel-default">
                                                       <div class="panel-body">
-                                                            <p>summary</p
+                                                            <p style="font-size: 20px">While socio-economic factors fail to show state-level correlation between tickets purchased or money spent on lottery tickets, 
+                                                                it is clear that one driving factor of sales is jackpot size.  Unsurprisingly, more tickets are sold at higher prize amounts.
+                                                                <br>
+                                                                <br>
+                                                                The ticket sales versus date graph shows us the life-cycle of ticket sales.  It is worth exploring the change in ticket sales between 2011 and 2012.
+                                                                On January 15, 2012 the price of a Powerball tickets increased by $1 to $2.  Inspecting this on the graph you can see that ticket sales did decrease with this change in pricing.  
+                                                                Examining the same time frame, we can observe that revenue (Total Sales) increased slightly even at low jackpots, and at higher jackpots grew significantly over the pre-price increase years.
+                                                                <br>
+                                                                <br>
+                                                                Note: Size corresponds to relative jackpot value and color corresponds to each individual jackpot growth from the initial drawing at a base jackpot to winning ticket.  
+
+                                
+                                                             </p>
                                                       </div>
                                                   </div>
                                                   
                                                  
                                                 </div> 
-                                            </div>
+                                            
                                                 <div class="col-md-8">
                                                     
                                                     <div class="panel panel-default">
@@ -190,39 +264,61 @@
                                                             <div class="row">
                                                                 <div class="col-md-12">
             
-                                                                    <form action="" method="POST" class="form-inline" role="form"></form>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                        <label class="sr-only" for="graph_y">label</label>
-                                                                                        <select name="" id="graph_y">
-                                                                                            <option value=""></option>
-                                                                                            <option value=""></option>
-                                                                                            <option value=""></option>
+                                                                        <form action="" class = "form-inline">
+                                                                                <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                            <label for="jackY">Y-Axis Value</label>
+                                                                                            <select class="form-control" id="jackY">
+                                                                                              <option>Ticket Sales</option>
+                                                                                              <option>Jackpot Value</option>
+            
+                                                                                              <option>Base/Draw Ticket Sales ($)</option>
+                                                                                              <option>Power Play Sales ($)</option>
+                                                                                              <option>Total Sales ($)</option>
+                                                                                            </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <div class="form-group">
+                                                                                        <label for="jackYears">   Year</label>
+                                                                                        <select class="form-control" id="jackYears">
+                                                                                          <option>2010-2015</option>
+                                                                                          <option>2011</option>
+                                                                                          <option>2012</option>
+                                                                                          <option>2013</option>
+                                                                                          <option>2014</option>
+                                                                                          <option>2015</option>
                                                                                         </select>
                                                                                     </div>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                <button type="submit" class="btn btn-primary" id="jack_graph_submit">Graph!</button>
+                                                                            </div>
+                                                                           </div>
+                                                                           <div class="row">
+                                                                                <div class="col-md-12">
+                    
+                                                                                </div>
+                                                                           </div>
+                                                                           <div class="row">
+                                                                               <div class="col-md-12">
+                                                                            <div class="form-group">
+                                                                                <label for="jackX"> X-Axis Value</label>
+                                                                                <select class="form-control" id="jackX">
+                                                                                  <option>Jackpot Value</option>
+                                                                                  <option>Date</option>
+                                                                                  <option># of Drawings Since Last Jackpot Win</option>
+                                                                                </select>
+                                                                            </div>
+
+                                                                            
                                                                         </div>
-                                                                        <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                        <label class="sr-only" for="">label</label>
-                                                                                        <input type="email" class="form-control" id="" placeholder="Input field">
-                                                                                    </div>
+                                                                        
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                                <div class="form-group">
-                                                                                        <label class="sr-only" for="">label</label>
-                                                                                        <input type="email" class="form-control" id="" placeholder="Input field">
-                                                                                    </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
+                                                                    </form>
                                                                     
-                                
+                                                                    <div id="graph"></div>
                                                                     
                                                                     
                                                                             
@@ -231,7 +327,7 @@
                                                                     
                                                                 </div>
                                                             </div>
-                                                                <div id='graph'></div>
+                                                                
                                                         </div>
                                                     </div>
                                                     
