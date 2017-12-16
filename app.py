@@ -45,6 +45,7 @@ def jackpots(chosen_year, data_point, dep_var):
                                         'year': 1,
                                         'date_format': 1,
                                         'drawings_since_jackpot': 1,
+                                        'jackpot':1,
                                         '_id': 0 })
     df = pd.DataFrame(list(results))
     if chosen_year != 'all':
@@ -100,7 +101,8 @@ def sales_data(year):
     df = pd.DataFrame(list(results))
 
     df.dropna(inplace = True)
-
+    df['sum_sales']=df['norm_draw_sales']+df['norm_pp_sales']
+    df.sort_values('sum_sales', ascending = False, inplace = True)
     sales_dict = df.to_dict(orient = 'list')
     
     return jsonify(sales_dict)

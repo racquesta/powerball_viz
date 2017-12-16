@@ -1,6 +1,9 @@
 /* @font-face { font-family: Delicious; src: url('Delicious-Roman.otf'); } 
 @font-face { font-family: Delicious; font-weight: bold; src: url('Delicious-Bold.otf'); } */
-
+body{
+    font-family: "Stint Ultra Expanded";
+    
+}
 
 h1 {
     color: crimson;
@@ -16,12 +19,13 @@ h1 {
     border-bottom-color: 'black';
     border-bottom-style: solid;
     border-bottom-width: 10px;
+    
 }
 
 
 
 body{
-    background-color: #efefef
+    background-color: #e8e7e7f2
 }
 
 #jumboHeader{
@@ -30,4 +34,9 @@ body{
 
 #explaination{
     color: crimson;
+}
+
+.hovertext text{
+    font-family: "Stint Ultra Expanded" !important;
+    font-size: "13px" !important;
 }
