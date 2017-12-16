@@ -32,7 +32,13 @@ def home():
 
 @app.route("/years")
 def years():
-    pipe = [{'$match': {'year': {'$in': [2010, 2011, 2012, 2013, 2014, 2015]}}}, {'$group': {'_id': '$year', 'year': {'$first': '$year'}}}, {'$sort': {'_id': 1}}]
+    pipe = [{'$match': {'year': {'$in': [2010, 
+                                        2011, 
+                                        2012, 
+                                        2013, 
+                                        2014, 
+                                        2015]}}}, 
+            {'$group': {'_id': '$year', 'year': {'$first': '$year'}}}, {'$sort': {'_id': 1}}]
     results = total_collection.aggregate(pipeline=pipe)
     results_list = [x['year'] for x in results]
     return jsonify(results_list)
@@ -107,11 +113,18 @@ def sales_data(year):
     
     return jsonify(sales_dict)
 
-# unfinished route
+
 @app.route("/soc_data/<chosen_year>/<data_point>/<dep_var>")
 def soc_data(chosen_year, data_point, dep_var):
-    pipe =  [{"$match": {"$and" : [{'year': {"$in": [2011, 2012, 2013, 2014, 2015]}}, {"state_abbr": {"$ne": "VI"}}]}}, {'$group': {'_id': {'year': '$year', 'state': '$states'}, 'independent': {'$avg': ("$" + data_point)}, 
-                                                                                    'dependent': {'$sum': ('$' + dep_var)}}}]
+    pipe =  [{"$match": {"$and" : [{'year': {"$in": [2011, 
+                                                    2012, 
+                                                    2013, 
+                                                    2014,
+                                                    2015]}}, 
+                                    {"state_abbr": {"$ne": "VI"}}]}}, 
+            {'$group': {'_id': {'year': '$year', 'state': '$states'},
+                            'independent': {'$avg': ("$" + data_point)}, 
+                            'dependent': {'$sum': ('$' + dep_var)}}}]
     results = total_collection.aggregate(pipeline=pipe)
 
     df = pd.DataFrame(list(results))
