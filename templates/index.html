@@ -21,6 +21,17 @@
     <link href='http://fonts.googleapis.com/css?family=Stint+Ultra+Expanded' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Leaflet JS & CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    
+    <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
@@ -50,8 +61,22 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                            <h1 style="text-align: center">Are Some States Luckier than Others?</h1>
-                           <hr>
-                           <p>Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?Maybe summary text here?</p> 
+                            <hr>
+                            <p>A common misconception regarding the game of chance is the factor of luck. Due to the chance of winning a jackpot being so increcibly low, it is not uncommon to see a state that does not very rank high in ticket sales be "lucky" in terms of having quite a few jackpot winners. All in all, it is fair to say that over time, statistics will win out and the more participation = more winners will normalize.</p> 
+                            <p>From the below maps, we can see the state parcipiation level and their outcome of revenue. When comparing # of tickets sold vs # of Jackpot winners (2010-2017), we can see that states like Delaware does not rank very high in tickets sold, however they have a comparable amount (3) of jackpot winners. On the other hand, Texas only has 2 jackpot winners. In the end, we still see when the data gets large enough, the results normalize. Specifically when looking at the big players such as California, Florida, New York, and New Jersey. There are also points of interest in Kentucky and Missouri for having a strong participation and a winning rate. For more exploration, please refer below the maps.<hr>
+                            <div class="w3-row">
+                                <div class="w3-col" style="width:45%">
+                                    <h2 id="mapTitle1" style="text-align: center">Map 1</h2>
+                                    <div id="map1"></div>
+                                    <label for="selData1">Select a Dataset:<select id="selData1"><option selected disabled>Please select</option></select></label>
+                                </div>
+                                <div class="w3-col" style="width:10%"><h2 style="text-align:center">VS</h2></div>
+                                <div class="w3-col" style="width:45%">
+                                    <h2 id="mapTitle2" style="text-align: center">Map 2</h2>
+                                    <div id="map2"></div>
+                                    <label for="selData2">Select a Dataset:<select id="selData2"><option selected disabled>Please select</option></select></label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -351,6 +376,7 @@
        
         
     <script src="../static/js/logic.js"></script>
+    <script type="text/javascript" src="../static/js/leaflet.js"></script>
     
 </body>
 </html>
