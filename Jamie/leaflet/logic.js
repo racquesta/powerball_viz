@@ -179,7 +179,7 @@ function init() {
 
   legend1.onAdd = function (map) {
 
-    var div1 = L.DomUtil.create('div', 'info legend1'),
+    var div1 = L.DomUtil.create('div', 'legend'),
         grades1 = [1, 10, 20, 30, 40, 50, 75, 90],
         labels1 = [];
     for (var i = 0; i < grades1.length; i++) {
@@ -194,7 +194,7 @@ function init() {
 
   legend2.onAdd = function (map) {
 
-    var div2 = L.DomUtil.create('div', 'info legend2'),
+    var div2 = L.DomUtil.create('div', 'legend'),
         grades2 = [1, 10, 20, 30, 40, 50, 75, 90],
         labels2 = [];
     for (var i = 0; i < grades2.length; i++) {
