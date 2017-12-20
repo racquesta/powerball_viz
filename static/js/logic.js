@@ -432,12 +432,12 @@ d3.select("#jack_graph_submit").on("click", function(){
                 var dep_var = "jackpot";
                 // var max_y = 26;
                 break;
-            case "Power Play Sales":
-                var dep_var = "jackpot";
+            case "Power Play Sales ($)":
+                var dep_var = "state_pp_sales";
                 // var max_y = 26;
                 break;
             case "Base/Draw Ticket Sales ($)":
-                var dep_var = "ticket_sales";
+                var dep_var = "state_draw_sales";
                 // var max_y = 26;
                 break;
             case "Total Sales ($)":
@@ -445,7 +445,7 @@ d3.select("#jack_graph_submit").on("click", function(){
                 // var max_y = 26;
                 break;
             default:
-                var dep_var = "ticket_sales"
+                var dep_var = "revenue"
                 // var max_y = 40
             
         };
