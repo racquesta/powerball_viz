@@ -29,7 +29,16 @@ def home():
     # print(list_years)
     return render_template("index.html")
 
-
+@app.route("/numbers")
+def nums():
+    results  = total_collection.find({}, {"date_format": 1,
+                                        "numbers": 1,
+                                        "powerball": 1,
+                                        "_id": 0
+                                        })
+    results_list = [x for x in results]
+    return jsonify(results_list)
+    
 @app.route("/years")
 def years():
     pipe = [{'$match': {'year': {'$in': [2010, 
