@@ -1,11 +1,13 @@
 var map1 = L.map("map1", {
   center: [35, -100],
-  zoom: 4
+  zoom: 4,
+  scrollWheelZoom: false
 });
 
 var map2 = L.map("map2", {
   center: [35, -100],
-  zoom: 4
+  zoom: 4,
+  scrollWheelZoom: false
 });
 
 L.tileLayer("https://api.mapbox.com/styles/v1/jamiejin91/cjb4aryzk6z6y2so0gnawkf6s/tiles/256/{z}/{x}/{y}?access_token=" + 
